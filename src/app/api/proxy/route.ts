@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   const session = await auth0.getSession();
-  console.log(session?.tokenSet.accessToken)
 
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -21,7 +20,6 @@ export async function POST(req: NextRequest) {
   options.headers = headers
 
   try {
-    console.log(url)
     const res = await fetch(url, options);
     const contentType = res.headers.get('content-type') || '';
 
